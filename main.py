@@ -10,11 +10,11 @@ LOCATION_NAME = "단국대 죽전캠퍼스"
 def main():
     # 1) 날씨 조회
     weather = get_current_weather(DKU_LAT, DKU_LON)
-    print(f"위치: {LOCATION_NAME}")
-    print(f"현재 날씨: {weather['main']} ({weather['desc']})\n")
+    print(f"현재 날씨: {weather['main']} ({weather['desc']}) | 기온: {weather['temp']}℃\n")
+    menus = recommend_menu(weather["main"], weather["temp"])
 
     # 2) 메뉴 추천
-    menus = recommend_menu(weather["main"])
+    menus = recommend_menu(weather["main"], weather["temp"])
     print("추천 메뉴:")
     for m in menus:
         print(f" - {m}")

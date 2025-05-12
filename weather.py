@@ -14,6 +14,7 @@ def get_current_weather(lat: float, lon: float) -> dict:
     resp.raise_for_status()
     data = resp.json()
     return {
-        "main": data["weather"][0]["main"],       # e.g. "Clear", "Rain"
-        "desc": data["weather"][0]["description"] # e.g. "맑음", "가벼운 비"
+        "main": data["weather"][0]["main"],
+        "desc": data["weather"][0]["description"],
+        "temp": data["main"]["temp"]  # 기온 추가
     }
