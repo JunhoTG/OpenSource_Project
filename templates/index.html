@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="이 웹페이지를 통해 단국대 주변 음식 메뉴를 추천받으세요!">
+    <meta name="author" content="Devcrud">
+    <title>FoodHut | Free Bootstrap 4.3.x template</title>
+   
+    <!-- font icons -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/assets/vendors/themify-icons/css/themify-icons.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/assets/vendors/animate/animate.css') }}">
+
+    <!-- Bootstrap + FoodHut main styles -->
+	<link rel="stylesheet" href="{{ url_for('static', filename='assets/assets/css/foodhut.css') }}">
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+    
+    <!-- Navbar -->
+    <nav class="custom-navbar navbar navbar-expand-lg navbar-dark fixed-top" data-spy="affix" data-offset-top="10">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav" style="margin-left: 50px;">
+                <li class="nav-item">
+                    <a class="nav-link" href="#home">홈</a>
+                </li>
+                <li class="nav-item" style="margin-left: 20px;">
+                    <a class="nav-link" href="#about">소개</a>
+                </li>
+                <li class="nav-item" style="margin-left: 20px;">
+                    <a class="nav-link" href="javascript:void(0)" data-toggle="modal" data-target="#settingsModal">설정</a>
+                </li>
+                <!--버튼을 3개만 사용(홈,정보,설정)-->
+            </ul>
+            <style>
+            .nav-link {
+            font-size: 1.6rem;        /* 폰트 크기 */
+            padding: 0.8rem 1.5rem;   /* 위아래, 좌우 여백 */
+            }
+            </style>
+                
+            <a class="navbar-brand m-auto" href="#">
+            </a>
+            
+        </div>
+    </nav>
+    <!-- header -->
+    <header id="home" class="header">
+        <div class="overlay text-white text-center">
+            <h1 class="display-2 font-weight-bold my-3">DKU Food Recommendation</h1>
+            <h2 class="display-4 mb-5">단국대 주변 음식 추천</h2>
+            <a class="btn btn-lg btn-primary" href="javascript:void(0)" onclick="showBlog()">추천 내용 바로 보기</a>
+        </div>
+    </header>
+
+    <!--  About Section  소개 부분-->
+    <div id="about" class="container-fluid wow fadeIn" id="about"data-wow-duration="1.5s">
+        <div class="row">
+            <div class="col-lg-6 has-img-bg"></div>
+            <div class="col-lg-6">
+                <div class="row justify-content-center">
+                    <div class="col-sm-8 py-5 my-5">
+                        <h2 class="mb-4">스마트한 메뉴 추천 서비스</h2>
+                        <p>단국대학교 앞에서 무엇을 먹을지 고민되시나요? 저희는 여러분의 상황에 맞춰 <b>맞춤형 음식점과 메뉴를 추천</b>해주는 스마트한 웹 서비스를 제공합니다. 
+                        <br><br>- <b>날씨 정보 반영</b> : 다양한 카테고리로와 날씨에 따라 어울리는 메뉴 제안</p>
+                        <p>- <b>지도 기반 추천</b> : 단국대 주변 음식점 위치와 정보 제공</p>
+                        <p>- <b>공강 시간 활용</b> : 남은 공강 시간에 따라 빠른 식사 장소 추천</p>
+                        <p>- <b>인원 수 고려</b> : 함께 식사할 인원에 맞춘 메뉴 정보 포함</p>
+                        <p><b>이제 더 이상 힘들게 고민하지 마세요. 상황에 딱 맞는 메뉴와 맛집을 한눈에 확인해보세요!</b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 설정 모달 -->
+    <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content bg-dark text-white">
+
+            <div class="modal-header">
+            <h5 class="modal-title">설정</h5>
+            <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
+            </div>
+
+            <div class="modal-body">    
+            <!-- 인원수 선택 -->
+            <label for="people" class="mt-2">인원 수</label>
+            <select id="people" class="form-control">
+                <option value="1">1명</option>
+                <option value="2">2명</option>
+                <option value="3">3명</option>
+                <option value="4">4명</option>
+                <option value="5+">5명 이상</option>
+            </select>    
+            <!-- 공강시간 선택 -->
+            <label for="freetime" class="mt-3">공강 시간</label>
+            <select id="freetime" class="form-control">
+                <option value="60">1시간</option>
+                <option value="120">2시간</option>
+                <option value="180+">3시간 이상</option>
+            </select>    
+            </div>
+
+            <div class="modal-footer">
+            <button class="btn btn-primary" onclick="submitSettings()" data-dismiss="modal">적용</button>
+            
+            </div>
+        </div>
+        </div>
+    </div>
+
+    
+  
+   
+    <!-- BLOG Section  
+    추천한 내용을 보여주는 기능. 스크롤로 화면 내리기를 하는게 아닌, 추천받기 버튼을 눌러야만 화면에 보이게 만들 예정 -->
+    <div id = "blog" style="display: none;" class = "container-fluid bg-dark text-light py-5 text-center wow fadeIn">
+        <h2 class="section-title" style="padding-top:50px; padding-bottom: 70px;">추천 메뉴</h2>
+        
+            
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="foods" role="tabpanel" aria-labelledby="pills-home-tab">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card bg-transparent border my-3 my-md-0">
+                            <div class="card-body">
+                                <h1 class="text-center mb-4"><a href="#" class="badge badge-primary">$5</a></h1>
+                                <h4 class="pt20 pb20">Reiciendis Laborum </h4>
+                                <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa provident illum officiis fugit laudantium voluptatem sit iste delectus qui ex. </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-transparent border my-3 my-md-0">                           
+                            <div class="card-body">
+                                <h1 class="text-center mb-4"><a href="#" class="badge badge-primary">$12</a></h1>
+                                <h4 class="pt20 pb20">Adipisci Totam</h4>
+                                <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa provident illum officiis fugit laudantium voluptatem sit iste delectus qui ex. </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-transparent border my-3 my-md-0">                           
+                            <div class="card-body">
+                                <h1 class="text-center mb-4"><a href="#" class="badge badge-primary">$8</a></h1>
+                                <h4 class="pt20 pb20">Dicta Deserunt</h4>
+                                <p class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa provident illum officiis fugit laudantium voluptatem sit iste delectus qui ex. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    
+    <div class="bg-dark text-light text-center border-top wow fadeIn"> <!--저작권 표시 부분만 남겨둠-->
+        <p class="mb-0 py-3 text-muted small">&copy; Copyright  Made with <i class="ti-heart text-danger"></i> By <a href="http://devcrud.com">DevCRUD</a></p>
+    </div>
+    <!-- end of page footer -->
+
+	<!-- core  -->
+    <script src="{{ url_for('static', filename='assets/assets/vendors/jquery/jquery-3.4.1.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/assets/vendors/bootstrap/bootstrap.bundle.js') }}"></script>
+
+    <!-- bootstrap affix -->
+    <script src="{{ url_for('static', filename='assets/assets/vendors/bootstrap/bootstrap.affix.js') }}"></script>
+
+    <!-- wow.js -->
+    <script src="{{ url_for('static', filename='assets/assets/vendors/wow/wow.js') }}"></script>
+    
+    <!-- google maps -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtme10pzgKSPeJVJrG1O3tjR6lk98o4w8&callback=initMap"></script>
+
+    <!-- FoodHut js -->
+    <script src="{{ url_for('static', filename='assets/assets/js/foodhut.js') }}"></script>
+
+    <!-- FoodHut js -->
+<script src="{{ url_for('static', filename='assets/assets/js/foodhut.js') }}"></script>
+
+    
+
+
+
+
+
+
+<script>
+function submitSettings() {
+    alert("설정이 저장되었습니다. 추천 내용을 보시려면 버튼을 눌러주세요.");
+}
+
+function showBlog() {
+    const people = document.getElementById("people").value;
+    const freetime = document.getElementById("freetime").value;
+
+    fetch('/get_recommendation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            group_size: people,
+            free_time: freetime
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        const blog = document.getElementById("blog");
+
+        blog.innerHTML = `
+            <h2 class="section-title mb-5">추천 메뉴</h2>
+            <div class="row">
+              ${data.menus.map((menu, idx) => {
+                const restaurant = data.restaurants[menu] && data.restaurants[menu][0];
+                const restHtml = restaurant ? `
+                  <a href="${restaurant.link}" target="_blank" class="text-light">${restaurant.title.replace(/<[^>]+>/g, '')}</a>
+                ` : '(연결된 음식점 없음)';
+                return `
+                <div class="col-md-4">
+                  <div class="card bg-transparent border my-3 my-md-0">
+                    <div class="card-body text-center">
+                      <h1 class="mb-4"><span class="badge badge-primary">${menu}</span></h1>
+                      <p class="text-white">${restHtml}</p>
+                    </div>
+                  </div>
+                </div>`;
+              }).join("")}
+            </div>
+        `;
+        blog.style.display = "block";
+        blog.scrollIntoView({ behavior: "smooth" });
+    });
+}
+</script>
+
+</body>
+</html>
