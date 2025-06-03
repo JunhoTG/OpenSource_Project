@@ -112,7 +112,7 @@ def recommend_menu(weather_main, temp, free_time, group_size):
 
     # fallback
     if not candidates:
-        candidates = ["비빔밥", "된장찌개", "불고기", "제육볶음"]
+        return []
 
     used = set(history.get(key, []))
     final_candidates = set(candidates) - used
